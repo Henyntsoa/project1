@@ -1,0 +1,12 @@
+
+{
+    "nomDuPersonnel" :
+    [{
+        "id" : 1,
+        "nom" : "RAKSROOT"
+    },
+    {
+        "id" : 2,
+        "nom" : "SONGALY"
+    }]
+}
