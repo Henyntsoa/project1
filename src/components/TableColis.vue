@@ -5,11 +5,12 @@
     @resultData="transfertToParent"
     @fermerModal="fermerModal"
   />
-  <TableView :colis="colis" />
+  <TableView :colis="$store.state.colisEnvoye" />
 </template>
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
+import store from "../store";
 import DialogView from "./DialogView.vue";
 import TableView from "./TableView.vue";
 
@@ -20,6 +21,7 @@ const colis = ref([]);
 //reception données venant de dialogView
 const transfertToParent = (dataFromChild) => {
   colis.value.push(dataFromChild);
+  store.commit("setColisEnvoye", colis)
 };
 const fermerModal = () => {
   dialogAjout.value = false;
@@ -33,7 +35,6 @@ onBeforeUnmount(() => {
   document.removeEventListener("keyup", keyupHandler);
 });
 const keyupHandler = (event) => {
-  // console.log(event)
   if (event.ctrlKey && event.code == "Enter") {
     dialogAjout.value = true;
   }
@@ -59,6 +60,6 @@ td:nth-child(1) {
 }
 
 tr:nth-child(even) {
-  background-color: #eee;
+  background-color:rgba(0, 0, 0, 0.015)
 }
 </style>
